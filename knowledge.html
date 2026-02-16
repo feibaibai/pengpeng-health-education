@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="蓬蓬科普用药知识库 - 提供肿瘤药物信息、适应症、用法用量、不良反应等专业知识">
+    <title>用药知识库 - 蓬蓬科普 Pengpeng Health</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-area">
+                    <img src="../static/img/logo.jpg" alt="蓬蓬科普 Logo">
+                    <div>
+                        <h1 class="lang-zh">蓬蓬科普</h1>
+                        <h1 class="lang-en">Pengpeng Health</h1>
+                        <p class="english-name lang-zh">用药知识库</p>
+                        <p class="english-name lang-en">Knowledge Base</p>
+                    </div>
+                </div>
+                <div class="lang-switch">
+                    <button data-lang="zh" class="active">中文</button>
+                    <button data-lang="en">English</button>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html" data-i18n="nav.home">首页</a></li>
+                    <li><a href="knowledge.html" class="active" data-i18n="nav.knowledge">用药知识库</a></li>
+                    <li><a href="personal.html" data-i18n="nav.personal">个性化中心</a></li>
+                    <li><a href="topics.html" data-i18n="nav.topics">专题区</a></li>
+                    <li><a href="about.html" data-i18n="nav.about">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main>
+        <div class="container">
+            <h1 class="page-title lang-zh">用药知识库</h1>
+            <h1 class="page-title lang-en hidden">Medication Knowledge Base</h1>
+
+            <!-- 搜索框 -->
+            <div class="search-section">
+                <form class="search-box search-form">
+                    <input type="text"
+                           class="lang-zh"
+                           placeholder="搜索药物名称、疾病、症状..."
+                           data-i18n-placeholder="knowledge.search">
+                    <input type="text"
+                           class="lang-en hidden"
+                           placeholder="Search drug names, diseases, symptoms..."
+                           data-i18n-placeholder="knowledge.search">
+                    <button type="submit" class="lang-zh">搜索</button>
+                    <button type="submit" class="lang-en hidden">Search</button>
+                </form>
+            </div>
+
+            <!-- 分面筛选 -->
+            <div class="facet-section">
+                <h3 class="lang-zh">筛选条件</h3>
+                <h3 class="lang-en hidden">Filters</h3>
+
+                <!-- 肿瘤类型 -->
+                <div class="facet-group" data-filter="tumorType">
+                    <h4 class="lang-zh">肿瘤类型</h4>
+                    <h4 class="lang-en hidden">Tumor Type</h4>
+                    <div class="facet-options">
+                        <span class="facet-option" data-value="lung">肺癌 / Lung</span>
+                        <span class="facet-option" data-value="gastric">胃癌 / Gastric</span>
+                        <span class="facet-option" data-value="breast">乳腺癌 / Breast</span>
+                        <span class="facet-option" data-value="colorectal">结直肠癌 / Colorectal</span>
+                        <span class="facet-option" data-value="liver">肝癌 / Liver</span>
+                        <span class="facet-option" data-value="prostate">前列腺癌 / Prostate</span>
+                    </div>
+                </div>
+
+                <!-- 药物类别 -->
+                <div class="facet-group" data-filter="drugCategory">
+                    <h4 class="lang-zh">药物类别</h4>
+                    <h4 class="lang-en hidden">Drug Category</h4>
+                    <div class="facet-options">
+                        <span class="facet-option" data-value="chemotherapy">化疗药 / Chemotherapy</span>
+                        <span class="facet-option" data-value="targeted">靶向药 / Targeted</span>
+                        <span class="facet-option" data-value="immunotherapy">免疫治疗 / Immunotherapy</span>
+                        <span class="facet-option" data-value="hormonal">内分泌治疗 / Hormonal</span>
+                        <span class="facet-option" data-value="supportive">支持治疗 / Supportive</span>
+                    </div>
+                </div>
+
+                <!-- 症状 -->
+                <div class="facet-group" data-filter="symptoms">
+                    <h4 class="lang-zh">症状</h4>
+                    <h4 class="lang-en hidden">Symptoms</h4>
+                    <div class="facet-options">
+                        <span class="facet-option" data-value="pain">疼痛 / Pain</span>
+                        <span class="facet-option" data-value="nausea">恶心呕吐 / Nausea</span>
+                        <span class="facet-option" data-value="fatigue">乏力 / Fatigue</span>
+                        <span class="facet-option" data-value="rash">皮疹 / Rash</span>
+                        <span class="facet-option" data-value="diarrhea">腹泻 / Diarrhea</span>
+                    </div>
+                </div>
+
+                <!-- 合并疾病 -->
+                <div class="facet-group" data-filter="comorbidities">
+                    <h4 class="lang-zh">合并疾病</h4>
+                    <h4 class="lang-en hidden">Comorbidities</h4>
+                    <div class="facet-options">
+                        <span class="facet-option" data-value="hypertension">高血压 / Hypertension</span>
+                        <span class="facet-option" data-value="diabetes">糖尿病 / Diabetes</span>
+                        <span class="facet-option" data-value="cardiac">心脏病 / Cardiac</span>
+                        <span class="facet-option" data-value="renal">肾功能不全 / Renal</span>
+                        <span class="facet-option" data-value="hepatic">肝功能不全 / Hepatic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 知识库文章列表 -->
+            <div class="content-grid">
+                <!-- 文章 1 -->
+                <div class="article-card">
+                    <div class="thumbnail">💊</div>
+                    <div class="content">
+                        <h3 class="lang-zh">紫杉醇注射液</h3>
+                        <h3 class="lang-en hidden">Paclitaxel Injection</h3>
+                        <p class="lang-zh">广谱抗肿瘤抗生素，用于治疗乳腺癌、卵巢癌、肺癌等多种恶性肿瘤。</p>
+                        <p class="lang-en hidden">Broad-spectrum antitumor antibiotic for breast, ovarian, lung cancer and more.</p>
+                        <div class="meta">
+                            <div class="tags">
+                                <span class="tag">化疗药 / Chemotherapy</span>
+                                <span class="tag">肺癌 / Lung</span>
+                                <span class="tag">乳腺癌 / Breast</span>
+                            </div>
+                            <a href="article.html?id=101" class="read-more lang-zh">查看详情 →</a>
+                            <a href="article.html?id=101" class="read-more lang-en hidden">Details →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 文章 2 -->
+                <div class="article-card">
+                    <div class="thumbnail">🎯</div>
+                    <div class="content">
+                        <h3 class="lang-zh">吉非替尼片</h3>
+                        <h3 class="lang-en hidden">Gefitinib Tablets</h3>
+                        <p class="lang-zh">表皮生长因子受体酪氨酸激酶抑制剂，用于EGFR突变的非小细胞肺癌。</p>
+                        <p class="lang-en hidden">EGFR-TKI for EGFR-mutated non-small cell lung cancer.</p>
+                        <div class="meta">
+                            <div class="tags">
+                                <span class="tag">靶向药 / Targeted</span>
+                                <span class="tag">肺癌 / Lung</span>
+                            </div>
+                            <a href="article.html?id=102" class="read-more lang-zh">查看详情 →</a>
+                            <a href="article.html?id=102" class="read-more lang-en hidden">Details →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 文章 3 -->
+                <div class="article-card">
+                    <div class="thumbnail">💉</div>
+                    <div class="content">
+                        <h3 class="lang-zh">帕博利珠单抗</h3>
+                        <h3 class="lang-en hidden">Pembrolizumab</h3>
+                        <p class="lang-zh">PD-1抑制剂，用于多种肿瘤的免疫治疗，包括肺癌、黑色素瘤等。</p>
+                        <p class="lang-en hidden">PD-1 inhibitor for immunotherapy of various cancers including lung and melanoma.</p>
+                        <div class="meta">
+                            <div class="tags">
+                                <span class="tag">免疫治疗 / Immunotherapy</span>
+                                <span class="tag">肺癌 / Lung</span>
+                            </div>
+                            <a href="article.html?id=103" class="read-more lang-zh">查看详情 →</a>
+                            <a href="article.html?id=103" class="read-more lang-en hidden">Details →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 文章 4 -->
+                <div class="article-card">
+                    <div class="thumbnail">💊</div>
+                    <div class="content">
+                        <h3 class="lang-zh">奥沙利铂</h3>
+                        <h3 class="lang-en hidden">Oxaliplatin</h3>
+                        <p class="lang-zh">第三代铂类化合物，主要用于结直肠癌的治疗。</p>
+                        <p class="lang-en hidden">Third-generation platinum compound primarily for colorectal cancer.</p>
+                        <div class="meta">
+                            <div class="tags">
+                                <span class="tag">化疗药 / Chemotherapy</span>
+                                <span class="tag">结直肠癌 / Colorectal</span>
+                            </div>
+                            <a href="article.html?id=104" class="read-more lang-zh">查看详情 →</a>
+                            <a href="article.html?id=104" class="read-more lang-en hidden">Details →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 文章 5 -->
+                <div class="article-card">
+                    <div class="thumbnail">🎯</div>
+                    <div class="content">
+                        <h3 class="lang-zh">曲妥珠单抗</h3>
+                        <h3 class="lang-en hidden">Trastuzumab</h3>
+                        <p class="lang-zh">HER2受体抑制剂，用于HER2阳性的乳腺癌和胃癌。</p>
+                        <p class="lang-en hidden">HER2 receptor inhibitor for HER2-positive breast and gastric cancer.</p>
+                        <div class="meta">
+                            <div class="tags">
+                                <span class="tag">靶向药 / Targeted</span>
+                                <span class="tag">乳腺癌 / Breast</span>
+                                <span class="tag">胃癌 / Gastric</span>
+                            </div>
+                            <a href="article.html?id=105" class="read-more lang-zh">查看详情 →</a>
+                            <a href="article.html?id=105" class="read-more lang-en hidden">Details →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 文章 6 -->
+                <div class="article-card">
+                    <div class="thumbnail">💊</div>
+                    <div class="content">
+                        <h3 class="lang-zh">吗啡缓释片</h3>
+                        <h3 class="lang-en hidden">Morphine Sustained-Release Tablets</h3>
+                        <p class="lang-zh">强效阿片类镇痛药，用于中重度癌痛的治疗。</p>
+                        <p class="lang-en hidden">Potent opioid analgesic for moderate to severe cancer pain.</p>
+                        <div class="meta">
+                            <div class="tags">
+                                <span class="tag">支持治疗 / Supportive</span>
+                                <span class="tag">疼痛 / Pain</span>
+                            </div>
+                            <a href="article.html?id=106" class="read-more lang-zh">查看详情 →</a>
+                            <a href="article.html?id=106" class="read-more lang-en hidden">Details →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 文章 7 -->
+                <div class="article-card">
+                    <div class="thumbnail">💊</div>
+                    <div class="content">
+                        <h3 class="lang-zh">来曲唑片</h3>
+                        <h3 class="lang-en hidden">Letrozole Tablets</h3>
+                        <p class="lang-zh">芳香化酶抑制剂，用于激素受体阳性乳腺癌的内分泌治疗。</p>
+                        <p class="lang-en hidden">Aromatase inhibitor for hormonal therapy of hormone receptor-positive breast cancer.</p>
+                        <div class="meta">
+                            <div class="tags">
+                                <span class="tag">内分泌治疗 / Hormonal</span>
+                                <span class="tag">乳腺癌 / Breast</span>
+                            </div>
+                            <a href="article.html?id=107" class="read-more lang-zh">查看详情 →</a>
+                            <a href="article.html?id=107" class="read-more lang-en hidden">Details →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 文章 8 -->
+                <div class="article-card">
+                    <div class="thumbnail">💉</div>
+                    <div class="content">
+                        <h3 class="lang-zh">贝伐珠单抗</h3>
+                        <h3 class="lang-en hidden">Bevacizumab</h3>
+                        <p class="lang-zh">抗血管生成药物，用于多种实体瘤的治疗。</p>
+                        <p class="lang-en hidden">Anti-angiogenic drug for various solid tumors.</p>
+                        <div class="meta">
+                            <div class="tags">
+                                <span class="tag">靶向药 / Targeted</span>
+                                <span class="tag">肺癌 / Lung</span>
+                                <span class="tag">结直肠癌 / Colorectal</span>
+                            </div>
+                            <a href="article.html?id=108" class="read-more lang-zh">查看详情 →</a>
+                            <a href="article.html?id=108" class="read-more lang-en hidden">Details →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="lang-zh">联系我们</h4>
+                    <h4 class="lang-en hidden">Contact Us</h4>
+                    <p class="lang-zh">内容合作：赖老师 510327039@qq.com</p>
+                    <p class="lang-en hidden">Content: Lao Laoshi 510327039@qq.com</p>
+                    <p class="lang-zh">学术支持：白老师 474027594@qq.com</p>
+                    <p class="lang-en hidden">Academic: Bai Laoshi 474027594@qq.com</p>
+                    <p class="lang-zh">地址：重庆市沙坪坝区汉渝路181号</p>
+                    <p class="lang-en hidden">Address: No. 181 Hanyu Road, Shapingba, Chongqing</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="lang-zh">关注我们</h4>
+                    <h4 class="lang-en hidden">Follow Us</h4>
+                    <p class="lang-zh">抖音/微信视频号：蓬蓬科普</p>
+                    <p class="lang-en hidden">Douyin/WeChat: 蓬蓬科普</p>
+                    <p class="lang-zh">小红书：蓬蓬pharmacist</p>
+                    <p class="lang-en hidden">Xiaohongshu: 蓬蓬pharmacist</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="lang-zh">&copy; 2024 蓬蓬科普 | 重庆大学附属肿瘤医院药学部</p>
+                <p class="lang-en hidden">&copy; 2024 Pengpeng Health | Department of Pharmacy, Chongqing University Cancer Hospital</p>
+                <p class="lang-zh">本网站信息仅供科普教育目的，不能替代专业医疗建议</p>
+                <p class="lang-en hidden">Information on this website is for educational purposes only and cannot replace professional medical advice</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 左下角固定Logo -->
+    <div class="fixed-logo">
+        <img src="../static/img/logo.jpg" alt="蓬蓬科普 Logo">
+    </div>
+
+    <script src="../static/js/app.js"></script>
+</body>
+</html>

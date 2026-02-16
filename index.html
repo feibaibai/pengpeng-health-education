@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="蓬蓬科普 - 老年肿瘤患者用药科普个性化推荐网站，为老年肿瘤患者及其家属提供专业、易懂、个性化的用药科普信息">
+    <meta name="keywords" content="蓬蓬科普,老年肿瘤,用药科普,个性化推荐,健康教育">
+    <title>蓬蓬科普 Pengpeng Health - 老年肿瘤患者用药科普</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-area">
+                    <img src="static/img/logo.jpg" alt="蓬蓬科普 Logo">
+                    <div>
+                        <h1 class="lang-zh">蓬蓬科普</h1>
+                        <h1 class="lang-en">Pengpeng Health</h1>
+                        <p class="english-name lang-zh">老年肿瘤患者用药科普</p>
+                        <p class="english-name lang-en">Medication Education for Cancer Patients</p>
+                    </div>
+                </div>
+                <div class="lang-switch">
+                    <button data-lang="zh" class="active">中文</button>
+                    <button data-lang="en">English</button>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active" data-i18n="nav.home">首页</a></li>
+                    <li><a href="pages/knowledge.html" data-i18n="nav.knowledge">用药知识库</a></li>
+                    <li><a href="pages/personal.html" data-i18n="nav.personal">个性化中心</a></li>
+                    <li><a href="pages/topics.html" data-i18n="nav.topics">专题区</a></li>
+                    <li><a href="pages/about.html" data-i18n="nav.about">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main>
+        <div class="container">
+            <!-- 欢迎区 -->
+            <section class="welcome-section">
+                <h2 class="lang-zh">欢迎来到蓬蓬科普</h2>
+                <h2 class="lang-en">Welcome to Pengpeng Health</h2>
+                <p class="lang-zh">我们致力于为老年肿瘤患者及其家属提供专业、易懂、个性化的用药科普信息</p>
+                <p class="lang-en">Dedicated to providing professional, easy-to-understand, and personalized medication education for elderly cancer patients and their families</p>
+
+                <!-- 搜索框 -->
+                <div class="search-section">
+                    <form class="search-box search-form">
+                        <input type="text"
+                               class="lang-zh"
+                               placeholder="搜索药物、疾病、症状..."
+                               data-i18n-placeholder="home.searchPlaceholder">
+                        <input type="text"
+                               class="lang-en hidden"
+                               placeholder="Search drugs, diseases, symptoms..."
+                               data-i18n-placeholder="home.searchPlaceholder">
+                        <button type="submit" class="lang-zh">搜索</button>
+                        <button type="submit" class="lang-en hidden">Search</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- 快速导航 -->
+            <section class="quick-nav">
+                <div class="nav-card" onclick="location.href='pages/knowledge.html'">
+                    <div class="icon">💊</div>
+                    <h3 class="lang-zh">用药知识库</h3>
+                    <h3 class="lang-en">Knowledge Base</h3>
+                    <p class="lang-zh">浏览药物信息、适应症、用法用量等专业知识</p>
+                    <p class="lang-en">Browse drug information, indications, dosages, and more</p>
+                </div>
+                <div class="nav-card" onclick="location.href='pages/personal.html'">
+                    <div class="icon">🎯</div>
+                    <h3 class="lang-zh">个性化推荐</h3>
+                    <h3 class="lang-en">Personalized</h3>
+                    <p class="lang-zh">填写信息，获取专属的用药科普推荐</p>
+                    <p class="lang-en">Fill in your info for personalized recommendations</p>
+                </div>
+                <div class="nav-card" onclick="location.href='pages/topics.html'">
+                    <div class="icon">📚</div>
+                    <h3 class="lang-zh">专题区</h3>
+                    <h3 class="lang-en">Topics</h3>
+                    <p class="lang-zh">专题科普文章和视频资源</p>
+                    <p class="lang-en">Featured articles and video resources</p>
+                </div>
+                <div class="nav-card" onclick="location.href='pages/about.html'">
+                    <div class="icon">ℹ️</div>
+                    <h3 class="lang-zh">关于我们</h3>
+                    <h3 class="lang-en">About Us</h3>
+                    <p class="lang-zh">了解平台背景和团队信息</p>
+                    <p class="lang-en">Learn about our platform and team</p>
+                </div>
+            </section>
+
+            <!-- 热门文章 -->
+            <section class="articles-section">
+                <h2 class="page-title lang-zh">热门科普文章</h2>
+                <h2 class="page-title lang-en hidden">Featured Articles</h2>
+
+                <div class="content-grid">
+                    <!-- 文章卡片 1 -->
+                    <div class="article-card">
+                        <div class="thumbnail">💊</div>
+                        <div class="content">
+                            <h3 class="lang-zh">老年肿瘤患者用药注意事项</h3>
+                            <h3 class="lang-en hidden">Medication Tips for Elderly Cancer Patients</h3>
+                            <p class="lang-zh">了解老年肿瘤患者在用药过程中需要特别注意的事项，包括剂量调整、药物相互作用等。</p>
+                            <p class="lang-en hidden">Learn about important considerations for elderly cancer patients, including dosage adjustments and drug interactions.</p>
+                            <div class="meta">
+                                <div class="tags">
+                                    <span class="tag lang-zh">用药安全</span>
+                                    <span class="tag lang-en hidden">Safety</span>
+                                    <span class="tag lang-zh">老年患者</span>
+                                    <span class="tag lang-en hidden">Elderly</span>
+                                </div>
+                                <a href="pages/article.html?id=1" class="read-more lang-zh">阅读更多 →</a>
+                                <a href="pages/article.html?id=1" class="read-more lang-en hidden">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 文章卡片 2 -->
+                    <div class="article-card">
+                        <div class="thumbnail">🎗️</div>
+                        <div class="content">
+                            <h3 class="lang-zh">化疗期间的营养支持</h3>
+                            <h3 class="lang-en hidden">Nutritional Support During Chemotherapy</h3>
+                            <p class="lang-zh">化疗期间如何通过合理饮食减轻副作用，提高生活质量。</p>
+                            <p class="lang-en hidden">How to alleviate side effects and improve quality of life through proper nutrition during chemotherapy.</p>
+                            <div class="meta">
+                                <div class="tags">
+                                    <span class="tag lang-zh">化疗</span>
+                                    <span class="tag lang-en hidden">Chemotherapy</span>
+                                    <span class="tag lang-zh">营养</span>
+                                    <span class="tag lang-en hidden">Nutrition</span>
+                                </div>
+                                <a href="pages/article.html?id=2" class="read-more lang-zh">阅读更多 →</a>
+                                <a href="pages/article.html?id=2" class="read-more lang-en hidden">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 文章卡片 3 -->
+                    <div class="article-card">
+                        <div class="thumbnail">💉</div>
+                        <div class="content">
+                            <h3 class="lang-zh">靶向药物常见皮肤反应管理</h3>
+                            <h3 class="lang-en hidden">Managing Skin Reactions from Targeted Therapy</h3>
+                            <p class="lang-zh">靶向治疗可能引起的皮肤反应及应对策略。</p>
+                            <p class="lang-en hidden">Common skin reactions caused by targeted therapy and management strategies.</p>
+                            <div class="meta">
+                                <div class="tags">
+                                    <span class="tag lang-zh">靶向药</span>
+                                    <span class="tag lang-en hidden">Targeted Therapy</span>
+                                    <span class="tag lang-zh">副作用管理</span>
+                                    <span class="tag lang-en hidden">Side Effects</span>
+                                </div>
+                                <a href="pages/article.html?id=3" class="read-more lang-zh">阅读更多 →</a>
+                                <a href="pages/article.html?id=3" class="read-more lang-en hidden">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 文章卡片 4 -->
+                    <div class="article-card">
+                        <div class="thumbnail">🩺</div>
+                        <div class="content">
+                            <h3 class="lang-zh">肿瘤相关性疼痛的用药管理</h3>
+                            <h3 class="lang-en hidden">Medication Management for Cancer Pain</h3>
+                            <p class="lang-zh">如何科学使用止痛药物，有效控制肿瘤相关性疼痛。</p>
+                            <p class="lang-en hidden">How to scientifically use pain medications to effectively control cancer-related pain.</p>
+                            <div class="meta">
+                                <div class="tags">
+                                    <span class="tag lang-zh">疼痛管理</span>
+                                    <span class="tag lang-en hidden">Pain Management</span>
+                                    <span class="tag lang-zh">止痛药</span>
+                                    <span class="tag lang-en hidden">Pain Relief</span>
+                                </div>
+                                <a href="pages/article.html?id=4" class="read-more lang-zh">阅读更多 →</a>
+                                <a href="pages/article.html?id=4" class="read-more lang-en hidden">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 文章卡片 5 -->
+                    <div class="article-card">
+                        <div class="thumbnail">🔬</div>
+                        <div class="content">
+                            <h3 class="lang-zh">免疫治疗的正确使用方法</h3>
+                            <h3 class="lang-en hidden">Proper Use of Immunotherapy</h3>
+                            <p class="lang-zh">免疫治疗药物的用法、注意事项及不良反应应对。</p>
+                            <p class="lang-en hidden">Usage, precautions, and management of adverse reactions for immunotherapy drugs.</p>
+                            <div class="meta">
+                                <div class="tags">
+                                    <span class="tag lang-zh">免疫治疗</span>
+                                    <span class="tag lang-en hidden">Immunotherapy</span>
+                                    <span class="tag lang-zh">用药指导</span>
+                                    <span class="tag lang-en hidden">Medication Guide</span>
+                                </div>
+                                <a href="pages/article.html?id=5" class="read-more lang-zh">阅读更多 →</a>
+                                <a href="pages/article.html?id=5" class="read-more lang-en hidden">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 文章卡片 6 -->
+                    <div class="article-card">
+                        <div class="thumbnail">💊</div>
+                        <div class="content">
+                            <h3 class="lang-zh">药物相互作用的识别与预防</h3>
+                            <h3 class="lang-en hidden">Identifying and Preventing Drug Interactions</h3>
+                            <p class="lang-zh">了解常见的药物相互作用，避免不良反应。</p>
+                            <p class="lang-en hidden">Understand common drug interactions and avoid adverse reactions.</p>
+                            <div class="meta">
+                                <div class="tags">
+                                    <span class="tag lang-zh">药物相互作用</span>
+                                    <span class="tag lang-en hidden">Drug Interactions</span>
+                                    <span class="tag lang-zh">用药安全</span>
+                                    <span class="tag lang-en hidden">Safety</span>
+                                </div>
+                                <a href="pages/article.html?id=6" class="read-more lang-zh">阅读更多 →</a>
+                                <a href="pages/article.html?id=6" class="read-more lang-en hidden">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="lang-zh">联系我们</h4>
+                    <h4 class="lang-en hidden">Contact Us</h4>
+                    <p class="lang-zh">内容合作：赖老师 510327039@qq.com</p>
+                    <p class="lang-en hidden">Content: Lao Laoshi 510327039@qq.com</p>
+                    <p class="lang-zh">学术支持：白老师 474027594@qq.com</p>
+                    <p class="lang-en hidden">Academic: Bai Laoshi 474027594@qq.com</p>
+                    <p class="lang-zh">地址：重庆市沙坪坝区汉渝路181号</p>
+                    <p class="lang-en hidden">Address: No. 181 Hanyu Road, Shapingba, Chongqing</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="lang-zh">关注我们</h4>
+                    <h4 class="lang-en hidden">Follow Us</h4>
+                    <p class="lang-zh">抖音/微信视频号：蓬蓬科普</p>
+                    <p class="lang-en hidden">Douyin/WeChat: 蓬蓬科普</p>
+                    <p class="lang-zh">小红书：蓬蓬pharmacist</p>
+                    <p class="lang-en hidden">Xiaohongshu: 蓬蓬pharmacist</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="lang-zh">相关链接</h4>
+                    <h4 class="lang-en hidden">Links</h4>
+                    <p><a href="https://www.cqch.cn" target="_blank">重庆大学附属肿瘤医院</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="lang-zh">&copy; 2024 蓬蓬科普 | 重庆大学附属肿瘤医院药学部</p>
+                <p class="lang-en hidden">&copy; 2024 Pengpeng Health | Department of Pharmacy, Chongqing University Cancer Hospital</p>
+                <p class="lang-zh">本网站信息仅供科普教育目的，不能替代专业医疗建议</p>
+                <p class="lang-en hidden">Information on this website is for educational purposes only and cannot replace professional medical advice</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 左下角固定Logo -->
+    <div class="fixed-logo">
+        <img src="static/img/logo.jpg" alt="蓬蓬科普 Logo">
+    </div>
+
+    <script src="static/js/app.js"></script>
+</body>
+</html>
