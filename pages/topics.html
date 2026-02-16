@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="蓬蓬科普专题区 - 专题科普文章和视频资源">
+    <title>专题区 - 蓬蓬科普 Pengpeng Health</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+        .topic-filter {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .topic-filter-btn {
+            padding: 12px 30px;
+            background: var(--white);
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 17px;
+            transition: all 0.3s;
+        }
+
+        .topic-filter-btn:hover,
+        .topic-filter-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        .topic-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .topic-header {
+            padding: 25px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+        }
+
+        .topic-header h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .topic-type {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+
+        .topic-content {
+            padding: 25px;
+        }
+
+        .topic-content p {
+            font-size: 16px;
+            color: var(--light-text);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .file-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .file-list li {
+            padding: 15px;
+            background: #F5F5F5;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .file-list li:hover {
+            background: #E8F5E9;
+        }
+
+        .file-icon {
+            font-size: 32px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-name {
+            font-size: 17px;
+            color: var(--text-color);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .file-meta {
+            font-size: 14px;
+            color: var(--light-text);
+        }
+
+        .file-action {
+            display: flex;
+            gap: 10px;
+        }
+
+        .file-action a {
+            padding: 8px 20px;
+            background: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .file-action a:hover {
+            background: var(--secondary-color);
+        }
+
+        .video-preview {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 64px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .video-preview:hover {
+            transform: scale(1.02);
+        }
+
+        .video-preview span {
+            background: rgba(255, 255, 255, 0.2);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .topic-card.video-card .topic-header {
+            padding: 0;
+        }
+
+        .topic-card.video-card .video-preview {
+            margin: 0;
+        }
+
+        .topic-card.video-card .topic-content {
+            padding-top: 20px;
+        }
+
+        /* 文档预览模态框 */
+        #documentModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #documentModal .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            text-align: center;
+        }
+
+        #documentModal .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        #documentModal h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        #documentModal p {
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        #documentModal .contact-info {
+            margin-top: 25px;
+            padding: 20px;
+            background: #FFF3E0;
+            border-radius: 10px;
+        }
+
+        #documentModal .contact-info strong {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-area">
+                    <img src="../static/img/logo.jpg" alt="蓬蓬科普 Logo">
+                    <div>
+                        <h1 class="lang-zh">蓬蓬科普</h1>
+                        <h1 class="lang-en">Pengpeng Health</h1>
+                        <p class="english-name lang-zh">专题区</p>
+                        <p class="english-name lang-en">Topics</p>
+                    </div>
+                </div>
+                <div class="lang-switch">
+                    <button data-lang="zh" class="active">中文</button>
+                    <button data-lang="en">English</button>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html" data-i18n="nav.home">首页</a></li>
+                    <li><a href="knowledge.html" data-i18n="nav.knowledge">用药知识库</a></li>
+                    <li><a href="personal.html" data-i18n="nav.personal">个性化中心</a></li>
+                    <li><a href="topics.html" class="active" data-i18n="nav.topics">专题区</a></li>
+                    <li><a href="about.html" data-i18n="nav.about">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main>
+        <div class="container">
+            <h1 class="page-title lang-zh">专题区</h1>
+            <h1 class="page-title lang-en hidden">Topics</h1>
+
+            <p class="lang-zh" style="text-align: center; font-size: 18px; color: #666; margin-bottom: 20px;">
+                浏览我们的专题科普文章和视频资源
+            </p>
+            <p class="lang-en hidden" style="text-align: center; font-size: 18px; color: #666; margin-bottom: 20px;">
+                Browse our featured articles and video resources
+            </p>
+            <p class="lang-zh" style="text-align: center; font-size: 16px; color: #FF6F00; margin-bottom: 30px; padding: 10px; background: #FFF3E0; border-radius: 8px;">
+                📖 本专题区资料仅供在线阅览，不支持下载
+            </p>
+            <p class="lang-en hidden" style="text-align: center; font-size: 16px; color: #FF6F00; margin-bottom: 30px; padding: 10px; background: #FFF3E0; border-radius: 8px;">
+                📖 Materials are for online viewing only, download not available
+            </p>
+
+            <!-- 专题筛选 -->
+            <div class="topic-filter">
+                <button class="topic-filter-btn active" data-filter="all">
+                    <span class="lang-zh">全部</span>
+                    <span class="lang-en hidden">All</span>
+                </button>
+                <button class="topic-filter-btn" data-filter="document">
+                    <span class="lang-zh">📄 文档</span>
+                    <span class="lang-en hidden">📄 Documents</span>
+                </button>
+                <button class="topic-filter-btn" data-filter="video">
+                    <span class="lang-zh">🎬 视频</span>
+                    <span class="lang-en hidden">🎬 Videos</span>
+                </button>
+            </div>
+
+            <!-- 专题内容网格 -->
+            <div class="topic-grid">
+                <!-- 视频专题 1 -->
+                <div class="topic-card video-card" data-type="video">
+                    <div class="topic-header">
+                        <div class="video-preview" onclick="openVideoModal('药片颜色的秘密：色彩背后的健康密码')">
+                            <span>▶</span>
+                        </div>
+                    </div>
+                    <div class="topic-content">
+                        <span class="topic-type">🎬 视频 / Video</span>
+                        <h3 class="lang-zh">药片颜色的秘密：色彩背后的健康密码</h3>
+                        <h3 class="lang-en hidden">The Secret of Pill Colors</h3>
+                        <p class="lang-zh">探索药物颜色背后的科学原理和健康密码</p>
+                        <p class="lang-en hidden">Explore the science behind medication colors</p>
+                        <div class="file-list">
+                            <li>
+                                <div class="file-icon">🎬</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">药片颜色的秘密：色彩背后的健康密码</div>
+                                    <div class="file-name lang-en hidden">The Secret of Pill Colors</div>
+                                    <div class="file-meta">MP4 | 23.5 MB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="../static/topics/药片颜色的秘密：色彩背后的健康密码+白浩重庆大学附属肿瘤医院+17784758621.mp4" target="_blank" class="lang-zh">▶ 观看</a>
+                                    <a href="../static/topics/药片颜色的秘密：色彩背后的健康密码+白浩重庆大学附属肿瘤医院+17784758621.mp4" target="_blank" class="lang-en hidden">▶ Watch</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">药物颜色（配套文档）</div>
+                                    <div class="file-name lang-en hidden">Drug Colors (Document)</div>
+                                    <div class="file-meta">DOCX | 378 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('药物颜色')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Drug Colors')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 视频专题 2 -->
+                <div class="topic-card video-card" data-type="video">
+                    <div class="topic-header">
+                        <div class="video-preview" onclick="openVideoModal('狂犬病科普')">
+                            <span>▶</span>
+                        </div>
+                    </div>
+                    <div class="topic-content">
+                        <span class="topic-type">🎬 视频 / Video</span>
+                        <h3 class="lang-zh">狂犬病科普</h3>
+                        <h3 class="lang-en hidden">Rabies Education</h3>
+                        <p class="lang-zh">狂犬病预防知识和应急处置方法</p>
+                        <p class="lang-en hidden">Rabies prevention and emergency response</p>
+                        <div class="file-list">
+                            <li>
+                                <div class="file-icon">🎬</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">狂犬病科普视频</div>
+                                    <div class="file-name lang-en hidden">Rabies Education Video</div>
+                                    <div class="file-meta">MP4 | 22.4 MB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="../static/topics/狂犬病.mp4" target="_blank" class="lang-zh">▶ 观看</a>
+                                    <a href="../static/topics/狂犬病.mp4" target="_blank" class="lang-en hidden">▶ Watch</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">狂犬病科普（配套文档）</div>
+                                    <div class="file-name lang-en hidden">Rabies (Document)</div>
+                                    <div class="file-meta">DOCX | 15 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('狂犬病科普')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Rabies Education')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 文档专题 1 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">前列腺癌内分泌治疗药物科普</h3>
+                        <h3 class="lang-en hidden">Prostate Cancer Hormonal Therapy</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">详细介绍前列腺癌内分泌治疗药物的使用方法、注意事项及不良反应管理。</p>
+                        <p class="lang-en hidden">Detailed guide on hormonal therapy medications for prostate cancer.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">前列腺癌内分泌治疗药物科普</div>
+                                    <div class="file-name lang-en hidden">Prostate Cancer Hormonal Therapy</div>
+                                    <div class="file-meta">DOCX | 3.6 MB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('前列腺癌内分泌治疗药物科普')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Prostate Cancer Hormonal Therapy')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 2 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">长疗程口服抗菌药物</h3>
+                        <h3 class="lang-en hidden">Long-term Oral Antibiotics</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">关于长疗程口服抗菌药物的使用指导和注意事项。</p>
+                        <p class="lang-en hidden">Guide on long-term oral antibiotic therapy.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">长疗程口服抗菌药物</div>
+                                    <div class="file-name lang-en hidden">Long-term Oral Antibiotics</div>
+                                    <div class="file-meta">DOCX | 16 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('长疗程口服抗菌药物')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Long-term Oral Antibiotics')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 3 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">痛经到底能不能吃止痛药</h3>
+                        <h3 class="lang-en hidden">Pain Relief for Menstrual Cramps</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">真的别再忍痛了！科学使用止痛药物缓解痛经。</p>
+                        <p class="lang-en hidden">Scientific use of pain relief for menstrual cramps.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">痛经到底能不能吃止痛药 真的别再忍痛了</div>
+                                    <div class="file-name lang-en hidden">Pain Relief for Menstrual Cramps</div>
+                                    <div class="file-meta">DOCX | 12 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('痛经到底能不能吃止痛药')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Pain Relief for Menstrual Cramps')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 4 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">外出旅行出差小药箱</h3>
+                        <h3 class="lang-en hidden">Travel Medicine Kit</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">旅行出差必备药物清单和使用建议。</p>
+                        <p class="lang-en hidden">Essential medications and tips for travel.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">外出旅行出差小药箱</div>
+                                    <div class="file-name lang-en hidden">Travel Medicine Kit</div>
+                                    <div class="file-meta">DOCX | 15 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('外出旅行出差小药箱')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Travel Medicine Kit')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 5 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">中药储存</h3>
+                        <h3 class="lang-en hidden">Traditional Chinese Medicine Storage</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">中药材和中药饮片的正确储存方法。</p>
+                        <p class="lang-en hidden">Proper storage methods for TCM materials.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">中药储存</div>
+                                    <div class="file-name lang-en hidden">TCM Storage</div>
+                                    <div class="file-meta">DOCX | 16 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('中药储存')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('TCM Storage')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 6 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">过敏性鼻炎的防治</h3>
+                        <h3 class="lang-en hidden">Allergic Rhinitis Prevention</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">过敏性鼻炎的预防措施和治疗方法。</p>
+                        <p class="lang-en hidden">Prevention and treatment of allergic rhinitis.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">过敏性鼻炎的防治</div>
+                                    <div class="file-name lang-en hidden">Allergic Rhinitis Prevention</div>
+                                    <div class="file-meta">DOCX | 16 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('过敏性鼻炎的防治')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Allergic Rhinitis Prevention')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 7 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">流感就医指南</h3>
+                        <h3 class="lang-en hidden">Influenza Medical Guide</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">流感的症状识别、就医指导和用药建议。</p>
+                        <p class="lang-en hidden">Symptoms, medical guidance, and medication advice for flu.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">流感就医指南-科普</div>
+                                    <div class="file-name lang-en hidden">Influenza Medical Guide</div>
+                                    <div class="file-meta">DOCX | 14 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('流感就医指南')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Influenza Medical Guide')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 8 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">防暑小妙招</h3>
+                        <h3 class="lang-en hidden">Heatstroke Prevention Tips</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">夏季防暑降温的科学方法和应急处理。</p>
+                        <p class="lang-en hidden">Scientific methods for heat prevention and emergency response.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">防暑小妙招</div>
+                                    <div class="file-name lang-en hidden">Heatstroke Prevention Tips</div>
+                                    <div class="file-meta">DOCX | 15 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('防暑小妙招')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Heatstroke Prevention Tips')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 9 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">胆固醇高的人能吃鸡蛋黄吗</h3>
+                        <h3 class="lang-en hidden">Can You Eat Egg Yolks with High Cholesterol</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">科学解读胆固醇与鸡蛋黄的关系。</p>
+                        <p class="lang-en hidden">Scientific interpretation of cholesterol and egg yolks.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">胆固醇高的人能吃鸡蛋黄吗</div>
+                                    <div class="file-name lang-en hidden">Egg Yolks and Cholesterol</div>
+                                    <div class="file-meta">DOCX | 19 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('胆固醇高的人能吃鸡蛋黄吗')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Egg Yolks and Cholesterol')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 10 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">朋克养生可不可取？</h3>
+                        <h3 class="lang-en hidden">Is "Punk Wellness" Acceptable?</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">解析当代年轻人的"朋克养生"现象。</p>
+                        <p class="lang-en hidden">Analysis of the "punk wellness" phenomenon.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">朋克养生可不可取？</div>
+                                    <div class="file-name lang-en hidden">Punk Wellness Analysis</div>
+                                    <div class="file-meta">DOCX | 18 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('朋克养生可不可取？')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Punk Wellness')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 11 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">吃素才能减肥，是真的吗？</h3>
+                        <h3 class="lang-en hidden">Is Vegetarian Diet Necessary for Weight Loss?</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">科学解析素食与减肥的关系。</p>
+                        <p class="lang-en hidden">Scientific analysis of vegetarian diet and weight loss.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">吃素才能减肥，是真的吗？</div>
+                                    <div class="file-name lang-en hidden">Vegetarian Diet and Weight Loss</div>
+                                    <div class="file-meta">DOCX | 19 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('吃素才能减肥，是真的吗？')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Vegetarian Diet and Weight Loss')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 12 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">食物掉地上只要立马捡起来就能吃？</h3>
+                        <h3 class="lang-en hidden">5-Second Rule: Is It Safe?</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">揭秘"5秒法则"的科学真相。</p>
+                        <p class="lang-en hidden">The scientific truth behind the "5-second rule".</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">食物掉地上只要立马捡起来就能吃？</div>
+                                    <div class="file-name lang-en hidden">5-Second Rule</div>
+                                    <div class="file-meta">DOCX | 18 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('食物掉地上只要立马捡起来就能吃？')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('5-Second Rule')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 13 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">大家好 疱疹</h3>
+                        <h3 class="lang-en hidden">Herpes Zoster Information</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">带状疱疹的预防、识别和治疗。</p>
+                        <p class="lang-en hidden">Prevention, recognition, and treatment of herpes zoster.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">大家好 疱疹</div>
+                                    <div class="file-name lang-en hidden">Herpes Zoster Information</div>
+                                    <div class="file-meta">DOCX | 15 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('大家好 疱疹')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Herpes Zoster')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 14 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">急救科普</h3>
+                        <h3 class="lang-en hidden">First Aid Education</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">常见急症的识别和初步急救处理方法。</p>
+                        <p class="lang-en hidden">Recognition and first aid for common emergencies.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">急救科普</div>
+                                    <div class="file-name lang-en hidden">First Aid Education</div>
+                                    <div class="file-meta">DOCX | 7.07 MB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('急救科普')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('First Aid Education')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 15 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">北极熊紧急转运</h3>
+                        <h3 class="lang-en hidden">Emergency Patient Transfer</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">急诊患者转运的注意事项和流程。</p>
+                        <p class="lang-en hidden">Precautions and procedures for emergency patient transfer.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">北极熊紧急转运</div>
+                                    <div class="file-name lang-en hidden">Emergency Patient Transfer</div>
+                                    <div class="file-meta">DOCX | 15 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('北极熊紧急转运')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Emergency Patient Transfer')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 文档专题 16 -->
+                <div class="topic-card" data-type="document">
+                    <div class="topic-header">
+                        <span class="topic-type">📄 文档 / Document</span>
+                        <h3 class="lang-zh">120剧本</h3>
+                        <h3 class="lang-en hidden">Emergency Call Script</h3>
+                    </div>
+                    <div class="topic-content">
+                        <p class="lang-zh">正确拨打120急救电话的指导。</p>
+                        <p class="lang-en hidden">Guide on how to properly call emergency services.</p>
+                        <ul class="file-list">
+                            <li>
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name lang-zh">120剧本</div>
+                                    <div class="file-name lang-en hidden">Emergency Call Script</div>
+                                    <div class="file-meta">DOCX | 16 KB</div>
+                                </div>
+                                <div class="file-action">
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('120剧本')" class="lang-zh">📖 在线阅读</a>
+                                    <a href="javascript:void(0)" onclick="showDocumentPreview('Emergency Call Script')" class="lang-en hidden">📖 Read Online</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="lang-zh">联系我们</h4>
+                    <h4 class="lang-en hidden">Contact Us</h4>
+                    <p class="lang-zh">内容合作：赖老师 510327039@qq.com</p>
+                    <p class="lang-en hidden">Content: Lao Laoshi 510327039@qq.com</p>
+                    <p class="lang-zh">学术支持：白老师 474027594@qq.com</p>
+                    <p class="lang-en hidden">Academic: Bai Laoshi 474027594@qq.com</p>
+                    <p class="lang-zh">地址：重庆市沙坪坝区汉渝路181号</p>
+                    <p class="lang-en hidden">Address: No. 181 Hanyu Road, Shapingba, Chongqing</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="lang-zh">关注我们</h4>
+                    <h4 class="lang-en hidden">Follow Us</h4>
+                    <p class="lang-zh">抖音/微信视频号：蓬蓬科普</p>
+                    <p class="lang-en hidden">Douyin/WeChat: 蓬蓬科普</p>
+                    <p class="lang-zh">小红书：蓬蓬pharmacist</p>
+                    <p class="lang-en hidden">Xiaohongshu: 蓬蓬pharmacist</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="lang-zh">&copy; 2024 蓬蓬科普 | 重庆大学附属肿瘤医院药学部</p>
+                <p class="lang-en hidden">&copy; 2024 Pengpeng Health | Department of Pharmacy, Chongqing University Cancer Hospital</p>
+                <p class="lang-zh">本网站信息仅供科普教育目的，不能替代专业医疗建议</p>
+                <p class="lang-en hidden">Information on this website is for educational purposes only and cannot replace professional medical advice</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 左下角固定Logo -->
+    <div class="fixed-logo">
+        <img src="../static/img/logo.jpg" alt="蓬蓬科普 Logo">
+    </div>
+
+    <!-- 视频模态框 -->
+    <div id="videoModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 20px; border-radius: 10px; max-width: 800px; width: 90%; position: relative;">
+            <button onclick="closeVideoModal()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+            <h2 id="videoTitle" style="margin-bottom: 15px;"></h2>
+            <div style="background: #000; height: 400px; display: flex; align-items: center; justify-content: center; color: white;">
+                <p>视频播放器 / Video Player</p>
+            </div>
+            <p style="margin-top: 15px; color: #666;">视频功能将在后续版本中完善 / Video functionality will be improved in future versions</p>
+        </div>
+    </div>
+
+    <!-- 文档预览模态框 -->
+    <div id="documentModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeDocumentModal()">&times;</button>
+            <h3 id="documentTitle"></h3>
+            <p class="lang-zh">该文档仅供在线阅览预览</p>
+            <p class="lang-en hidden">This document is for online preview only</p>
+            <p class="lang-zh" style="margin-top: 15px;">为保护知识产权，完整文档内容暂不提供在线查看。</p>
+            <p class="lang-en hidden" style="margin-top: 15px;">To protect intellectual property, the full document content is not available for online viewing.</p>
+            <div class="contact-info">
+                <p class="lang-zh">如需获取完整文档，请联系：</p>
+                <p class="lang-en hidden">To obtain the full document, please contact:</p>
+                <p class="lang-zh"><strong>内容合作：赖老师 510327039@qq.com</strong></p>
+                <p class="lang-zh"><strong>学术支持：白老师 474027594@qq.com</strong></p>
+                <p class="lang-en hidden"><strong>Content: Lao Laoshi 510327039@qq.com</strong></p>
+                <p class="lang-en hidden"><strong>Academic: Bai Laoshi 474027594@qq.com</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/js/app.js"></script>
+    <script>
+        // 专题筛选功能
+        const filterButtons = document.querySelectorAll('.topic-filter-btn');
+        const topicCards = document.querySelectorAll('.topic-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+
+                // 更新按钮状态
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                // 筛选专题卡片
+                topicCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.type === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 视频模态框功能
+        function openVideoModal(title) {
+            const modal = document.getElementById('videoModal');
+            const titleElement = document.getElementById('videoTitle');
+            titleElement.textContent = title;
+            modal.style.display = 'flex';
+        }
+
+        function closeVideoModal() {
+            document.getElementById('videoModal').style.display = 'none';
+        }
+
+        // 点击模态框外部关闭
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        // 文档预览模态框功能
+        function showDocumentPreview(title) {
+            const modal = document.getElementById('documentModal');
+            const titleElement = document.getElementById('documentTitle');
+            titleElement.textContent = title;
+            modal.style.display = 'flex';
+        }
+
+        function closeDocumentModal() {
+            document.getElementById('documentModal').style.display = 'none';
+        }
+
+        // 点击文档模态框外部关闭
+        document.getElementById('documentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDocumentModal();
+            }
+        });
+    </script>
+</body>
+</html>

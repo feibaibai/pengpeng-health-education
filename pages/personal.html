@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="蓬蓬科普个性化中心 - 填写您的信息，获取专属的用药科普推荐">
+    <title>个性化中心 - 蓬蓬科普 Pengpeng Health</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-area">
+                    <img src="../static/img/logo.jpg" alt="蓬蓬科普 Logo">
+                    <div>
+                        <h1 class="lang-zh">蓬蓬科普</h1>
+                        <h1 class="lang-en">Pengpeng Health</h1>
+                        <p class="english-name lang-zh">个性化中心</p>
+                        <p class="english-name lang-en">Personalized Center</p>
+                    </div>
+                </div>
+                <div class="lang-switch">
+                    <button data-lang="zh" class="active">中文</button>
+                    <button data-lang="en">English</button>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html" data-i18n="nav.home">首页</a></li>
+                    <li><a href="knowledge.html" data-i18n="nav.knowledge">用药知识库</a></li>
+                    <li><a href="personal.html" class="active" data-i18n="nav.personal">个性化中心</a></li>
+                    <li><a href="topics.html" data-i18n="nav.topics">专题区</a></li>
+                    <li><a href="about.html" data-i18n="nav.about">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main>
+        <div class="container">
+            <h1 class="page-title lang-zh">个性化中心</h1>
+            <h1 class="page-title lang-en hidden">Personalized Center</h1>
+
+            <p class="lang-zh" style="text-align: center; font-size: 18px; color: #666; margin-bottom: 30px;">
+                填写您或家人的信息，我们将为您推荐最相关的用药科普内容
+            </p>
+            <p class="lang-en hidden" style="text-align: center; font-size: 18px; color: #666; margin-bottom: 30px;">
+                Fill in the information to get personalized medication education recommendations
+            </p>
+
+            <!-- 个性化表单 -->
+            <div class="form-section">
+                <form id="personalizationForm" data-form-type="personalization">
+                    <!-- 基本信息 -->
+                    <div class="form-group">
+                        <label class="lang-zh">年龄段 *</label>
+                        <label class="lang-en hidden">Age Group *</label>
+                        <select name="ageGroup" required>
+                            <option value="" class="lang-zh">请选择</option>
+                            <option value="" class="lang-en hidden">Please select</option>
+                            <option value="50-60">50-60岁 / 50-60 years</option>
+                            <option value="60-70">60-70岁 / 60-70 years</option>
+                            <option value="70-80">70-80岁 / 70-80 years</option>
+                            <option value="80+">80岁以上 / Over 80 years</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="lang-zh">性别</label>
+                        <label class="lang-en hidden">Gender</label>
+                        <select name="gender">
+                            <option value="" class="lang-zh">请选择</option>
+                            <option value="" class="lang-en hidden">Please select</option>
+                            <option value="male" class="lang-zh">男</option>
+                            <option value="male" class="lang-en hidden">Male</option>
+                            <option value="female" class="lang-zh">女</option>
+                            <option value="female" class="lang-en hidden">Female</option>
+                        </select>
+                    </div>
+
+                    <!-- 肿瘤信息 -->
+                    <div class="form-group">
+                        <label class="lang-zh">确诊肿瘤类型 *</label>
+                        <label class="lang-en hidden">Diagnosed Tumor Type *</label>
+                        <select name="tumorType" required>
+                            <option value="" class="lang-zh">请选择</option>
+                            <option value="" class="lang-en hidden">Please select</option>
+                            <option value="lung" class="lang-zh">肺癌</option>
+                            <option value="lung" class="lang-en hidden">Lung Cancer</option>
+                            <option value="gastric" class="lang-zh">胃癌</option>
+                            <option value="gastric" class="lang-en hidden">Gastric Cancer</option>
+                            <option value="breast" class="lang-zh">乳腺癌</option>
+                            <option value="breast" class="lang-en hidden">Breast Cancer</option>
+                            <option value="colorectal" class="lang-zh">结直肠癌</option>
+                            <option value="colorectal" class="lang-en hidden">Colorectal Cancer</option>
+                            <option value="liver" class="lang-zh">肝癌</option>
+                            <option value="liver" class="lang-en hidden">Liver Cancer</option>
+                            <option value="prostate" class="lang-zh">前列腺癌</option>
+                            <option value="prostate" class="lang-en hidden">Prostate Cancer</option>
+                            <option value="other" class="lang-zh">其他</option>
+                            <option value="other" class="lang-en hidden">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="lang-zh">当前治疗阶段</label>
+                        <label class="lang-en hidden">Current Treatment Stage</label>
+                        <select name="treatmentStage">
+                            <option value="" class="lang-zh">请选择</option>
+                            <option value="" class="lang-en hidden">Please select</option>
+                            <option value="pre-op" class="lang-zh">术前治疗</option>
+                            <option value="pre-op" class="lang-en hidden">Pre-operative</option>
+                            <option value="post-op" class="lang-zh">术后辅助治疗</option>
+                            <option value="post-op" class="lang-en hidden">Post-operative Adjuvant</option>
+                            <option value="palliative" class="lang-zh">姑息治疗</option>
+                            <option value="palliative" class="lang-en hidden">Palliative Care</option>
+                            <option value="maintenance" class="lang-zh">维持治疗</option>
+                            <option value="maintenance" class="lang-en hidden">Maintenance</option>
+                        </select>
+                    </div>
+
+                    <!-- 当前治疗药物 -->
+                    <div class="form-group">
+                        <label class="lang-zh">当前主要治疗方案</label>
+                        <label class="lang-en hidden">Current Primary Treatment</label>
+                        <select name="treatmentType">
+                            <option value="" class="lang-zh">请选择（可多选）</option>
+                            <option value="" class="lang-en hidden">Please select</option>
+                            <option value="chemotherapy" class="lang-zh">化疗</option>
+                            <option value="chemotherapy" class="lang-en hidden">Chemotherapy</option>
+                            <option value="targeted" class="lang-zh">靶向治疗</option>
+                            <option value="targeted" class="lang-en hidden">Targeted Therapy</option>
+                            <option value="immunotherapy" class="lang-zh">免疫治疗</option>
+                            <option value="immunotherapy" class="lang-en hidden">Immunotherapy</option>
+                            <option value="hormonal" class="lang-zh">内分泌治疗</option>
+                            <option value="hormonal" class="lang-en hidden">Hormonal Therapy</option>
+                            <option value="radiotherapy" class="lang-zh">放疗</option>
+                            <option value="radiotherapy" class="lang-en hidden">Radiotherapy</option>
+                        </select>
+                    </div>
+
+                    <!-- 症状 -->
+                    <div class="form-group">
+                        <label class="lang-zh">目前主要不适症状（可多选）</label>
+                        <label class="lang-en hidden">Current Symptoms (Select all that apply)</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                            <label><input type="checkbox" name="symptoms" value="pain"> 疼痛 / Pain</label>
+                            <label><input type="checkbox" name="symptoms" value="nausea"> 恶心呕吐 / Nausea</label>
+                            <label><input type="checkbox" name="symptoms" value="fatigue"> 乏力 / Fatigue</label>
+                            <label><input type="checkbox" name="symptoms" value="insomnia"> 失眠 / Insomnia</label>
+                            <label><input type="checkbox" name="symptoms" value="appetite"> 食欲不振 / Poor appetite</label>
+                            <label><input type="checkbox" name="symptoms" value="rash"> 皮疹 / Rash</label>
+                            <label><input type="checkbox" name="symptoms" value="diarrhea"> 腹泻 / Diarrhea</label>
+                            <label><input type="checkbox" name="symptoms" value="constipation"> 便秘 / Constipation</label>
+                        </div>
+                    </div>
+
+                    <!-- 合并疾病 -->
+                    <div class="form-group">
+                        <label class="lang-zh">合并疾病（可多选）</label>
+                        <label class="lang-en hidden">Comorbidities (Select all that apply)</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                            <label><input type="checkbox" name="comorbidities" value="hypertension"> 高血压 / Hypertension</label>
+                            <label><input type="checkbox" name="comorbidities" value="diabetes"> 糖尿病 / Diabetes</label>
+                            <label><input type="checkbox" name="comorbidities" value="cardiac"> 心脏病 / Heart disease</label>
+                            <label><input type="checkbox" name="comorbidities" value="copd"> 慢阻肺 / COPD</label>
+                            <label><input type="checkbox" name="comorbidities" value="renal"> 肾功能不全 / Renal impairment</label>
+                            <label><input type="checkbox" name="comorbidities" value="hepatic"> 肝功能不全 / Hepatic impairment</label>
+                        </div>
+                    </div>
+
+                    <!-- 当前用药 -->
+                    <div class="form-group">
+                        <label class="lang-zh">当前正在使用的主要肿瘤药物（可选）</label>
+                        <label class="lang-en hidden">Current Cancer Medications (Optional)</label>
+                        <textarea name="currentMeds" placeholder="例如：紫杉醇、吉非替尼等 / For example: Paclitaxel, Gefitinib, etc."></textarea>
+                    </div>
+
+                    <!-- 过敏史 -->
+                    <div class="form-group">
+                        <label class="lang-zh">药物过敏史（可选）</label>
+                        <label class="lang-en hidden">Drug Allergy History (Optional)</label>
+                        <textarea name="allergies" placeholder="请填写已知的药物过敏情况 / Please list any known drug allergies"></textarea>
+                    </div>
+
+                    <!-- 肝肾功能 -->
+                    <div class="form-group">
+                        <label class="lang-zh">肝肾功能大致情况</label>
+                        <label class="lang-en hidden">Liver and Kidney Function</label>
+                        <select name="organFunction">
+                            <option value="" class="lang-zh">请选择</option>
+                            <option value="" class="lang-en hidden">Please select</option>
+                            <option value="normal" class="lang-zh">正常</option>
+                            <option value="normal" class="lang-en hidden">Normal</option>
+                            <option value="mild" class="lang-zh">轻度异常</option>
+                            <option value="mild" class="lang-en hidden">Mild impairment</option>
+                            <option value="moderate" class="lang-zh">中度异常</option>
+                            <option value="moderate" class="lang-en hidden">Moderate impairment</option>
+                            <option value="severe" class="lang-zh">重度异常</option>
+                            <option value="severe" class="lang-en hidden">Severe impairment</option>
+                            <option value="unknown" class="lang-zh">不清楚</option>
+                            <option value="unknown" class="lang-en hidden">Unknown</option>
+                        </select>
+                    </div>
+
+                    <!-- 其他关注 -->
+                    <div class="form-group">
+                        <label class="lang-zh">其他关注的问题</label>
+                        <label class="lang-en hidden">Other Concerns</label>
+                        <textarea name="concerns" placeholder="请描述您最关心的问题 / Please describe your main concerns"></textarea>
+                    </div>
+
+                    <!-- 隐私保护声明 -->
+                    <div class="privacy-notice">
+                        <h4 class="lang-zh">🔒 隐私保护声明</h4>
+                        <h4 class="lang-en hidden">🔒 Privacy Notice</h4>
+                        <p class="lang-zh">
+                            您填写的信息将仅用于生成个性化的用药科普推荐。我们不会存储您的个人健康信息，也不会将其共享给任何第三方。
+                            所有信息处理均在本地完成，确保您的隐私安全。
+                        </p>
+                        <p class="lang-en hidden">
+                            The information you provide will only be used to generate personalized medication education recommendations.
+                            We do not store your personal health information or share it with any third parties.
+                            All information processing is done locally to ensure your privacy.
+                        </p>
+                    </div>
+
+                    <!-- 提交按钮 -->
+                    <div class="form-actions">
+                        <button type="submit" class="lang-zh">提交获取推荐</button>
+                        <button type="submit" class="lang-en hidden">Submit for Recommendations</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 推荐结果区域（初始隐藏） -->
+            <div id="recommendationResults" style="display: none; margin-top: 40px;">
+                <h2 class="page-title lang-zh">为您推荐</h2>
+                <h2 class="page-title lang-en hidden">Recommended for You</h2>
+                <div class="content-grid" id="recommendationGrid">
+                    <!-- 推荐内容将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="lang-zh">联系我们</h4>
+                    <h4 class="lang-en hidden">Contact Us</h4>
+                    <p class="lang-zh">内容合作：赖老师 510327039@qq.com</p>
+                    <p class="lang-en hidden">Content: Lao Laoshi 510327039@qq.com</p>
+                    <p class="lang-zh">学术支持：白老师 474027594@qq.com</p>
+                    <p class="lang-en hidden">Academic: Bai Laoshi 474027594@qq.com</p>
+                    <p class="lang-zh">地址：重庆市沙坪坝区汉渝路181号</p>
+                    <p class="lang-en hidden">Address: No. 181 Hanyu Road, Shapingba, Chongqing</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="lang-zh">关注我们</h4>
+                    <h4 class="lang-en hidden">Follow Us</h4>
+                    <p class="lang-zh">抖音/微信视频号：蓬蓬科普</p>
+                    <p class="lang-en hidden">Douyin/WeChat: 蓬蓬科普</p>
+                    <p class="lang-zh">小红书：蓬蓬pharmacist</p>
+                    <p class="lang-en hidden">Xiaohongshu: 蓬蓬pharmacist</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="lang-zh">&copy; 2024 蓬蓬科普 | 重庆大学附属肿瘤医院药学部</p>
+                <p class="lang-en hidden">&copy; 2024 Pengpeng Health | Department of Pharmacy, Chongqing University Cancer Hospital</p>
+                <p class="lang-zh">本网站信息仅供科普教育目的，不能替代专业医疗建议</p>
+                <p class="lang-en hidden">Information on this website is for educational purposes only and cannot replace professional medical advice</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 左下角固定Logo -->
+    <div class="fixed-logo">
+        <img src="../static/img/logo.jpg" alt="蓬蓬科普 Logo">
+    </div>
+
+    <script src="../static/js/app.js"></script>
+    <script>
+        // 个性化推荐逻辑
+        document.getElementById('personalizationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // 收集表单数据
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            });
+
+            console.log('Personalization data:', data);
+
+            // 根据用户信息生成推荐
+            const recommendations = generateRecommendations(data);
+
+            // 显示推荐结果
+            displayRecommendations(recommendations);
+        });
+
+        function generateRecommendations(data) {
+            const recommendations = [];
+            const tumorType = data.tumorType;
+            const symptoms = Array.isArray(data.symptoms) ? data.symptoms : [data.symptoms];
+            const comorbidities = Array.isArray(data.comorbidities) ? data.comorbidities : [data.comorbidities];
+            const treatmentType = data.treatmentType;
+            const ageGroup = data.ageGroup;
+
+            // 根据肿瘤类型推荐
+            const tumorArticles = {
+                'lung': {
+                    zh: { title: '肺癌患者用药指南', desc: '肺癌治疗常用药物及注意事项', tag: '肺癌' },
+                    en: { title: 'Lung Cancer Medication Guide', desc: 'Common medications for lung cancer treatment', tag: 'Lung' }
+                },
+                'breast': {
+                    zh: { title: '乳腺癌内分泌治疗', desc: '内分泌药物的使用方法和副作用管理', tag: '乳腺癌' },
+                    en: { title: 'Breast Cancer Hormonal Therapy', desc: 'Usage and side effect management', tag: 'Breast' }
+                },
+                'gastric': {
+                    zh: { title: '胃癌患者营养支持', desc: '胃癌治疗期间的饮食管理', tag: '胃癌' },
+                    en: { title: 'Nutritional Support for Gastric Cancer', desc: 'Dietary management during treatment', tag: 'Gastric' }
+                },
+                'colorectal': {
+                    zh: { title: '结直肠癌化疗药物', desc: '常用化疗药物介绍及注意事项', tag: '结直肠癌' },
+                    en: { title: 'Colorectal Cancer Chemotherapy', desc: 'Common chemo drugs and precautions', tag: 'Colorectal' }
+                },
+                'prostate': {
+                    zh: { title: '前列腺癌内分泌治疗', desc: '前列腺癌的药物治疗方案', tag: '前列腺癌' },
+                    en: { title: 'Prostate Cancer Hormonal Therapy', desc: 'Medical treatment options for prostate cancer', tag: 'Prostate' }
+                }
+            };
+
+            if (tumorType && tumorArticles[tumorType]) {
+                recommendations.push({
+                    ...tumorArticles[tumorType],
+                    icon: '🎗️',
+                    link: 'article.html?id=201'
+                });
+            }
+
+            // 根据症状推荐
+            if (symptoms.includes('pain')) {
+                recommendations.push({
+                    zh: { title: '癌痛管理指南', desc: '科学使用止痛药物，缓解疼痛', tag: '疼痛管理' },
+                    en: { title: 'Cancer Pain Management', desc: 'Scientific use of pain medications', tag: 'Pain' },
+                    icon: '💊',
+                    link: 'article.html?id=202'
+                });
+            }
+
+            if (symptoms.includes('nausea')) {
+                recommendations.push({
+                    zh: { title: '恶心呕吐的应对', desc: '化疗相关恶心呕吐的预防和处理', tag: '副作用管理' },
+                    en: { title: 'Managing Nausea and Vomiting', desc: 'Prevention and treatment of chemo-induced nausea', tag: 'Side Effects' },
+                    icon: '🤢',
+                    link: 'article.html?id=203'
+                });
+            }
+
+            if (symptoms.includes('fatigue')) {
+                recommendations.push({
+                    zh: { title: '癌因性疲乏的管理', desc: '如何缓解治疗期间的乏力症状', tag: '疲乏管理' },
+                    en: { title: 'Managing Cancer Fatigue', desc: 'How to alleviate fatigue during treatment', tag: 'Fatigue' },
+                    icon: '😴',
+                    link: 'article.html?id=204'
+                });
+            }
+
+            if (symptoms.includes('rash')) {
+                recommendations.push({
+                    zh: { title: '靶向药皮肤反应护理', desc: '皮疹的预防和处理方法', tag: '皮肤护理' },
+                    en: { title: 'Skin Care During Targeted Therapy', desc: 'Prevention and treatment of rash', tag: 'Skin Care' },
+                    icon: '🧴',
+                    link: 'article.html?id=205'
+                });
+            }
+
+            // 根据合并疾病推荐
+            if (comorbidities.includes('diabetes')) {
+                recommendations.push({
+                    zh: { title: '糖尿病患者肿瘤治疗注意事项', desc: '血糖管理在肿瘤治疗中的重要性', tag: '糖尿病' },
+                    en: { title: 'Cancer Treatment with Diabetes', desc: 'Importance of blood sugar management', tag: 'Diabetes' },
+                    icon: '🩸',
+                    link: 'article.html?id=206'
+                });
+            }
+
+            if (comorbidities.includes('hypertension')) {
+                recommendations.push({
+                    zh: { title: '高血压患者用药注意', desc: '抗肿瘤治疗对血压的影响及管理', tag: '高血压' },
+                    en: { title: 'Hypertension Management', desc: 'Blood pressure effects during cancer treatment', tag: 'Hypertension' },
+                    icon: '❤️',
+                    link: 'article.html?id=207'
+                });
+            }
+
+            // 根据治疗类型推荐
+            if (treatmentType === 'chemotherapy') {
+                recommendations.push({
+                    zh: { title: '化疗期间的生活指导', desc: '化疗期间的饮食、作息和注意事项', tag: '化疗' },
+                    en: { title: 'Life During Chemotherapy', desc: 'Diet, rest, and precautions during chemo', tag: 'Chemotherapy' },
+                    icon: '💉',
+                    link: 'article.html?id=208'
+                });
+            }
+
+            if (treatmentType === 'targeted') {
+                recommendations.push({
+                    zh: { title: '靶向药物治疗须知', desc: '靶向药的正确使用和不良反应监测', tag: '靶向药' },
+                    en: { title: 'Targeted Therapy Guide', desc: 'Proper use and monitoring of targeted therapy', tag: 'Targeted Therapy' },
+                    icon: '🎯',
+                    link: 'article.html?id=209'
+                });
+            }
+
+            // 根据年龄推荐（老年患者特殊关注）
+            if (ageGroup === '70-80' || ageGroup === '80+') {
+                recommendations.push({
+                    zh: { title: '老年肿瘤患者用药调整', desc: '老年人药物剂量调整和注意事项', tag: '老年患者' },
+                    en: { title: 'Medication Adjustment for Elderly', desc: 'Dosage adjustment and precautions for elderly', tag: 'Elderly' },
+                    icon: '👴',
+                    link: 'article.html?id=210'
+                });
+            }
+
+            // 通用推荐
+            recommendations.push({
+                zh: { title: '提高免疫力的方法', desc: '肿瘤治疗期间如何增强免疫力', tag: '免疫支持' },
+                en: { title: 'Boosting Immunity', desc: 'How to enhance immunity during treatment', tag: 'Immunity' },
+                icon: '🛡️',
+                link: 'article.html?id=211'
+            });
+
+            return recommendations.slice(0, 6); // 返回最多6个推荐
+        }
+
+        function displayRecommendations(recommendations) {
+            const grid = document.getElementById('recommendationGrid');
+            const resultsDiv = document.getElementById('recommendationResults');
+            const currentLang = localStorage.getItem('lang') || 'zh';
+
+            grid.innerHTML = '';
+
+            if (recommendations.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; padding: 40px; color: #666;">' +
+                    (currentLang === 'zh' ? '暂无相关推荐，请填写更多信息' : 'No recommendations yet, please provide more information') +
+                    '</p>';
+            } else {
+                recommendations.forEach(rec => {
+                    const content = rec[currentLang];
+                    const card = document.createElement('div');
+                    card.className = 'article-card';
+                    card.innerHTML = `
+                        <div class="thumbnail">${rec.icon}</div>
+                        <div class="content">
+                            <h3>${content.title}</h3>
+                            <p>${content.desc}</p>
+                            <div class="meta">
+                                <div class="tags">
+                                    <span class="tag">${content.tag}</span>
+                                </div>
+                                <a href="${rec.link}" class="read-more">${currentLang === 'zh' ? '阅读更多 →' : 'Read More →'}</a>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+
+            resultsDiv.style.display = 'block';
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+
+            // 显示成功消息
+            if (window.PengPengApp) {
+                window.PengPengApp.showNotification(
+                    currentLang === 'zh' ? '推荐生成成功！' : 'Recommendations generated!',
+                    'success'
+                );
+            }
+        }
+    </script>
+</body>
+</html>
