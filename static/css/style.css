@@ -39,6 +39,47 @@ body {
     padding: 0 20px;
 }
 
+/* 新春横幅 */
+.new-year-banner {
+    position: relative;
+    background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.banner-image {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80px;
+    width: auto;
+    z-index: 2;
+}
+
+.banner-title {
+    color: #FFD700;
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    text-shadow:
+        -2px -2px 0 #FFD700,
+        2px -2px 0 #FFD700,
+        -2px 2px 0 #FFD700,
+        2px 2px 0 #FFD700,
+        0 0 20px rgba(255, 215, 0, 0.5);
+    letter-spacing: 8px;
+    margin: 0;
+    padding: 10px 40px;
+    background: linear-gradient(135deg, rgba(211, 47, 47, 0.9) 0%, rgba(183, 28, 28, 0.9) 100%);
+    border-radius: 10px;
+    border: 3px solid #FFD700;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+}
+
 /* 顶部导航栏 */
 header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
@@ -767,6 +808,21 @@ footer {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
+    .new-year-banner {
+        padding: 15px 10px;
+    }
+
+    .banner-image {
+        height: 50px;
+        left: 10px;
+    }
+
+    .banner-title {
+        font-size: 20px;
+        padding: 8px 15px;
+        letter-spacing: 4px;
+    }
+
     body {
         font-size: 16px;
     }
