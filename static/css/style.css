@@ -2,14 +2,14 @@
 /* 主样式表 - 适合老年用户设计 */
 
 :root {
-    --primary-color: #2E7D32;
-    --secondary-color: #66BB6A;
+    --primary-color: #C62828;
+    --secondary-color: #EF5350;
     --accent-color: #FF6F00;
     --text-color: #333333;
     --light-text: #666666;
-    --bg-color: #FAFAFA;
+    --bg-color: #FFEBEE;
     --white: #FFFFFF;
-    --border-color: #E0E0E0;
+    --border-color: #EF9A9A;
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
 }

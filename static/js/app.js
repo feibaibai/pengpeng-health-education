@@ -188,12 +188,11 @@ function applyLanguage(lang) {
 
 function updateLanguageSpecificContent(lang) {
     // 切换语言特定的内容显示
-    document.querySelectorAll('.lang-zh, .lang-en').forEach(el => {
-        if (lang === 'zh') {
-            el.classList.remove('hidden');
-        } else {
-            el.classList.add('hidden');
-        }
+    document.querySelectorAll('.lang-zh').forEach(el => {
+        el.classList.toggle('hidden', lang !== 'zh');
+    });
+    document.querySelectorAll('.lang-en').forEach(el => {
+        el.classList.toggle('hidden', lang !== 'en');
     });
 }
 
