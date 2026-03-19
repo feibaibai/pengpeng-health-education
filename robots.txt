@@ -1,0 +1,13 @@
+# 蓬蓬科普 robots.txt
+# Pengpeng Health robots.txt
+
+User-agent: *
+Allow: /
+
+# 站点地图位置
+Sitemap: https://feibaibai.github.io/pengpeng-health-education/sitemap.xml
+
+# 禁止索引敏感目录
+Disallow: /static/documents/
+Disallow: /.git/
+Disallow: /node_modules/
